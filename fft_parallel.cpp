@@ -109,11 +109,14 @@ int main(int argc, char **argv)
         upcxx::barrier();
 
         // Put current just calculated values from each worker into shared memory.
-        for(int b = 0; b < values_per_process; b++)
+        if(global::rank != 0)
         {
-            const auto b_rank = (global::rank - 1) * values_per_process + b + 1;
-            upcxx::rput(temp_real[b], seq_real + b_rank).wait();
-            upcxx::rput(temp_img[b], seq_img + b_rank).wait();
+            for(int b = 0; b < values_per_process; b++)
+            {
+                const auto b_rank = (global::rank - 1) * values_per_process + b + 1;
+                upcxx::rput(temp_real[b], seq_real + b_rank).wait();
+                upcxx::rput(temp_img[b], seq_img + b_rank).wait();
+            }
         }
         logger::slave("ending compute...\n");
 
