@@ -19,6 +19,7 @@ set(UPCXX_BINARY_PATH "${UPCXX_PATH}/bin")
 set(UPCXX_INCLUDE_PATH "${UPCXX_PATH}/include")
 set(UPCXX_COMPILER "${UPCXX_BINARY_PATH}/upcxx")
 set(UPCXX_RUNNER "${UPCXX_BINARY_PATH}/upcxx-run")
+set(UPCXX_NODES "${UPCXX_BINARY_PATH}/upcxx-nodes")
 set(PARALLEL_TARGETS_FILE "${PROJECT_SOURCE_DIR}/build/nodes")
 set(SHARED_HEAP_SIZE "256M")
 set(PARALLEL_PROCESSES_COUNT 17)
@@ -56,7 +57,7 @@ target_link_options(fft_parallel PRIVATE $<$<BOOL:${ENABLE_ASAN}>:-fsanitize=add
 add_custom_target(run
     ${UPCXX_RUNNER} -shared-heap ${SHARED_HEAP_SIZE}
                     -n ${PARALLEL_PROCESSES_COUNT}
-                    `upcxx-nodes ${PARALLEL_TARGETS_FILE}`
+                    `${UPCXX_NODES} ${PARALLEL_TARGETS_FILE}`
                     $<TARGET_FILE:fft_parallel>
     DEPENDS $<TARGET_FILE:fft_parallel>
             parallel_nodes

@@ -1,10 +1,12 @@
-## Distributed and Parallel Systems Project 2
+# Parallel and distributed systems - Project 2
+
+Project written for Applied Computer Science **Parallel and distributed systems** course at [AGH UST](https://www.agh.edu.pl/en) [WFiIS](https://www.fis.agh.edu.pl/en/).
 
 Parallel FFT computation using UPC++ and C++.
 
-Semester 8, year 2023.
+Semester `8`, year `2023`.
 
-### How to run
+## How to run
 
 The program is designed to work on an AGH laboratory machine, it will not work in different
 environment.
@@ -19,7 +21,7 @@ $ make sequential  # run sequential FFT computation
 $ make clean       # clean build objects
 ```
 
-#### Additional parameters
+### Additional parameters
 
 CMake file allows specifying extra flags listed below:
 
@@ -34,11 +36,12 @@ They can be used as shown below:
 $ cmake -DENABLE_LOGGING=1 -DENABLE_ASAN=1 ..
 ```
 
-### Authors
+## Authors
 
 - [Piotr Deda](https://github.com/PiotrDeda)
 - [Aleksander Kluczka](https://github.com/vis4rd)
 
-### License
 
-This project is licensed under MIT, a free and open-source license. For more information, please see [the license file](LICENSE.md).
+## License
+
+Sources are licensed under MIT, a free and open-source license. For details, please see [the license file](LICENSE.md).
